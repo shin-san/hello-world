@@ -8,6 +8,6 @@ COPY .mvn /home/.mvn
 WORKDIR /home
 RUN chmod +x ./mvnw
 RUN ./mvnw clean package
-COPY /home/target/*.jar /usr/local/lib/app.jar
+COPY /home/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/app.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
