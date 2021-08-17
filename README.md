@@ -22,12 +22,12 @@ Note: `sudo` might also be required if it is being installed in unix OS
 #### Local
     docker build \
     --build-arg MAVEN_BUILD=maven:3.6.3-jdk-11-slim \
-    MYAPP_IMAGE=openjdk:11-jdk-slim \
+    --build-arg MYAPP_IMAGE=openjdk:11-jdk-slim \
     -t localhost:5000/hello-world:latest .
 #### Remote
     docker build https://github.com/shin-san/hello-world.git \
     --build-arg MAVEN_BUILD=maven:3.6.3-jdk-11-slim \
-    MYAPP_IMAGE=openjdk:11-jdk-slim \
+    --build-arg MYAPP_IMAGE=openjdk:11-jdk-slim \
     -t localhost:5000/hello-world:latest
     
 ## Run
