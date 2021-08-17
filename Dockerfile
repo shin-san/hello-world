@@ -6,6 +6,7 @@ COPY pom.xml /home/
 COPY mvnw /home/mvnw
 COPY .mvn /home/.mvn
 WORKDIR /home
+RUN chmod +x ./mvnw
 RUN ./mvnw clean package
 COPY target/*.jar /usr/local/lib/app.jar
 EXPOSE 8080
