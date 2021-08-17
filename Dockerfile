@@ -9,7 +9,6 @@ COPY .mvn /home/.mvn
 WORKDIR /home
 RUN chmod +x ./mvnw
 RUN ./mvnw clean package
-RUN chmod -R 755 ${JAR_FILE}
 COPY ${JAR_FILE} /usr/local/lib/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/local/lib/app.jar"]
