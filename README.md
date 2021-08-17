@@ -24,9 +24,9 @@ Note: `sudo` might also be required if it is being installed in unix OS
     --build-arg MYAPP_IMAGE=openjdk:11-jdk-slim \
     -t localhost:5000/hello-world:latest .
 #### Remote
-    docker build https://github.com/shin-san/cat-facts.git \
+    docker build https://github.com/shin-san/hello-world.git \
     --build-arg MYAPP_IMAGE=openjdk:11-jdk-slim \
-    -t localhost:5000/hello-world:latest .
+    -t localhost:5000/hello-world:latest
     
 ## Run
     docker run -p 8080:8080 localhost:5000/hello-world
