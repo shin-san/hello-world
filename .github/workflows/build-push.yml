@@ -12,14 +12,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: Initialise Docker Daemon
-        run: |
-          dockerd -H unix:///var/run/docker.sock 
-      
-      - name: Run Docker Build
-        run: |
-          docker build --build-arg MAVEN_BUILD=maven:3.6.3-jdk-11-slim --build-arg MYAPP_IMAGE=openjdk:11-jdk-slim -t localhost:5000/hello-world:latest .
-
-      - name: Push Docker Image
-        run: |
-          docker push localhost:5000/hello-world
+      - name: Initialise Docker
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver: docker
+          
+      - name: Docker Build and Push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          build-args: MAVEN_BUILD=maven:3.6.3-jdk-11-slim,MYAPP_IMAGE=openjdk:11-jdk-slim
+          push: true
+          tags: localhost:5000/hello-world:latest
