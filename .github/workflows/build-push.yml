@@ -11,6 +11,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Initialise Docker Daemon
+        run: |
+          dockerd -H unix:///var/run/docker.sock 
       
       - name: Run Docker Build
         run: |
