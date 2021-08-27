@@ -1,7 +1,7 @@
 # Use openjdk:11-jdk-slim as base container image
-ARG MYAPP_IMAGE
+ARG MYAPP_IMAGE=openjdk:11-jdk-slim
 # Use maven:3.6.3-jdk-11-slim for build
-ARG MAVEN_BUILD
+ARG MAVEN_BUILD=maven:3.6.3-jdk-11-slim
 
 #build
 FROM $MAVEN_BUILD AS build
