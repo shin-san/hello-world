@@ -34,4 +34,4 @@ jobs:
             MAVEN_BUILD=maven:3.6.3-jdk-11-slim
             MYAPP_IMAGE=openjdk:11-jdk-slim
           push: true
-          tags: naythanc/yet-another-hello-world:latest
+          tags: quay.io/naythanc/yet-another-hello-world:latest
