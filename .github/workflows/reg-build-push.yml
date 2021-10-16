@@ -1,4 +1,4 @@
-name: quay-build-push
+name: reg-build-push
 
 on:
   push:
