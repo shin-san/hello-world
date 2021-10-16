@@ -6,9 +6,9 @@ on:
       - 'master'
 
 env:
-  REGISTRY_USER: ${{ secrets.QUAY_USERNAME }}
-  IMAGE_REGISTRY: quay.io
-  REGISTRY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+  REGISTRY_USER: registry
+  IMAGE_REGISTRY: registry.naythanc.dev
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
 jobs:
   build:
@@ -34,4 +34,4 @@ jobs:
             MAVEN_BUILD=maven:3.6.3-jdk-11-slim
             MYAPP_IMAGE=openjdk:11-jdk-slim
           push: true
-          tags: quay.io/naythanc/yet-another-hello-world:latest
+          tags: registry.naythanc.dev/yet-another-hello-world:latest
