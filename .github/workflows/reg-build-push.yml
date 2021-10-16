@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY_USER: registry
-  IMAGE_REGISTRY: registry.naythanc.io
+  IMAGE_REGISTRY: registry.naythanc.dev
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
 jobs:
