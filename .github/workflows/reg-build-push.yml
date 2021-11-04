@@ -30,8 +30,9 @@ jobs:
       - name: Docker Build and Push
         uses: docker/build-push-action@v2
         with:
+          platforms: linux/amd64,linux/arm64
           build-args: |
             MAVEN_BUILD=maven:3.6.3-jdk-11-slim
-            MYAPP_IMAGE=openjdk:11-jdk-slim
+            MYAPP_IMAGE=registry.access.redhat.com/ubi8/openjdk-11:1.10
           push: true
           tags: ${{ env.IMAGE_REGISTRY }}/yet-another-hello-world:latest
