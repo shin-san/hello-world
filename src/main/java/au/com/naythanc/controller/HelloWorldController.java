@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldController {
 
-    @GetMapping("/hello")
+    @GetMapping(value = "/hello", produces = "application/json")
     private String helloWorld() {
         log.info("GET request helloWorld() invoked!");
-        return "Hello World";
+        return "{ \"message\": \"Hello World\" }";
     }
 }
