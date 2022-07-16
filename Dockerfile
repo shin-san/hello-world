@@ -1,16 +1,10 @@
-# Use openjdk:11-jdk-slim as base container image
-ARG MYAPP_IMAGE=openjdk:11-jdk-slim
-# Use maven:3.6.3-jdk-11-slim for build
-ARG MAVEN_BUILD=maven:3.6.3-jdk-11-slim
+FROM registry.access.redhat.com/ubi8/openjdk-11-runtime:1.13
 
-#build
-FROM $MAVEN_BUILD AS build
-COPY src /home/app/src
-COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean package
+WORKDIR /opt/app
 
-FROM $MYAPP_IMAGE
-ARG JAR_FILE=/home/app/target/*.jar
-COPY --from=build ${JAR_FILE} /usr/local/lib/app.jar
+ARG JAR_FILE=./target/*.jar
+COPY ${JAR_FILE} app.jar
+
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/app.jar"]
+ENTRYPOINT ["java","-jar", "-Djava.security.egd=file:/dev/./urandom", "/opt/app/app.jar"]
+
