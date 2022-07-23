@@ -3,7 +3,7 @@ name: gcp-build-push
 on:
   push:
     branches:
-      - 'feature/*'
+      - 'master'
 
 env:
   REGISTRY_USER: _json_key
