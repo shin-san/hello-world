@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<tests>unittest</tests>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -62,9 +63,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 				<configuration>
-					<groups>
-						unittest
-					</groups>
+					<groups>${tests}</groups>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -108,5 +107,20 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>unittest</id>
+			<properties>
+				<tests>unittest</tests>
+			</properties>
+		</profile>
+		<profile>
+			<id>integration</id>
+			<properties>
+				<tests>integrationtest</tests>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
