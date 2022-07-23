@@ -1,0 +1,60 @@
+name: reg-build-push
+
+on:
+  push:
+    branches:
+      - 'master'
+
+env:
+  REGISTRY_USER: _json_key
+  IMAGE_REGISTRY: gcr.io
+  REGISTRY_PASSWORD: ${{ secrets.GCP_KEY }}
+  GCP_PROJECT_ID: dev-project-311801
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          cache: 'maven'
+
+      - name: Cache the Maven packages to speed up build
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Test with Maven
+        run: mvn test -Dgroups=unittest -f pom.xml
+
+      - name: Build with Maven
+        run: mvn clean -B package -DskipTests -f pom.xml
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.IMAGE_REGISTRY }}
+          username: ${{ env.REGISTRY_USER}}
+          password: ${{ env.REGISTRY_PASSWORD }}
+
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/amd64
+          context: .
+          push: true
+          tags: ${{ env.IMAGE_REGISTRY }}/${{ env.GCP_PROJECT_ID }}/yet-another-hello-world:dev
