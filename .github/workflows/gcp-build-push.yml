@@ -27,7 +27,7 @@ jobs:
           distribution: 'adopt'
           cache: 'maven'
 
-      - name: Cache the Maven packages to speed up build
+      - name: Cache the Maven Dependencies
         uses: actions/cache@v1
         with:
           path: ~/.m2
@@ -77,4 +77,7 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@v0'
         with:
           metadata: gcp-service.yaml
+
+      - name: 'Run Quick cURL Test'
+        run: 'curl -k -v "${{ steps.deploy.outputs.url }}/api/v1/hello"'
 
