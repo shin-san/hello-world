@@ -73,7 +73,8 @@ jobs:
         with:
           credentials_json: '${{ secrets.CLOUD_RUN_KEY }}'
 
-      - name: 'Deploy to Cloud Run'
+      - id: 'deploy'
+        name: 'Deploy to Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@v0'
         with:
           metadata: gcp-service.yaml
