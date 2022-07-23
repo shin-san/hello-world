@@ -1,4 +1,4 @@
-name: reg-build-push
+name: gcp-build-push
 
 on:
   push:
