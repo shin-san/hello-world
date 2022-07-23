@@ -73,6 +73,14 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          cache: 'maven'
+
+      - name: Cache the Maven Dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
