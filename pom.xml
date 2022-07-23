@@ -92,12 +92,12 @@
 						<configuration>
 							<rules>
 								<rule>
-									<element>PACKAGE</element>
+									<element>BUNDLE</element>
 									<limits>
 										<limit>
-											<counter>LINE</counter>
-											<value>TOTALCOUNT</value>
-											<minimum>0.50</minimum>
+											<counter>INSTRUCTION</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.70</minimum>
 										</limit>
 									</limits>
 								</rule>
