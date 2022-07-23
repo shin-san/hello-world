@@ -3,13 +3,12 @@ name: reg-build-push
 on:
   push:
     branches:
-      - 'master'
+      - 'feature/*'
 
 env:
   REGISTRY_USER: _json_key
-  IMAGE_REGISTRY: gcr.io
+  IMAGE_REGISTRY: gcr.io/dev-project-311801
   REGISTRY_PASSWORD: ${{ secrets.GCP_KEY }}
-  GCP_PROJECT_ID: dev-project-311801
 
 jobs:
   build:
@@ -57,4 +56,4 @@ jobs:
           platforms: linux/amd64
           context: .
           push: true
-          tags: ${{ env.IMAGE_REGISTRY }}/${{ env.GCP_PROJECT_ID }}/yet-another-hello-world:dev
+          tags: ${{ env.IMAGE_REGISTRY }}/yet-another-hello-world:dev
