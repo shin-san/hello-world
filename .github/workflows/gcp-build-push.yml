@@ -3,7 +3,7 @@ name: gcp-build-push
 on:
   push:
     branches:
-      - 'features/*'
+      - 'feature/*'
   pull_request:
     branches:
       - 'master'
