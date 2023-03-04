@@ -3,7 +3,7 @@ name: quay-build-push
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 env:
   REGISTRY_USER: ${{ secrets.QUAY_USERNAME }}
