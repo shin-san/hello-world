@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/openjdk-11-runtime:1.13
+FROM registry.access.redhat.com/ubi8/openjdk-17-runtime:1.16
 
 WORKDIR /opt/app
 

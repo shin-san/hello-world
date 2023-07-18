@@ -1,7 +1,7 @@
-# Use openjdk:11-jdk-slim as base container image
-ARG MYAPP_IMAGE=openjdk:11-jdk-slim
+# Use ubi8 openjdk 17 runtime as base container image
+ARG MYAPP_IMAGE=registry.access.redhat.com/ubi8/openjdk-17-runtime:1.16
 # Use maven:3.6.3-jdk-11-slim for build
-ARG MAVEN_BUILD=maven:3.6.3-jdk-11-slim
+ARG MAVEN_BUILD=maven:3.8.7-openjdk-17-slim
 
 #build
 FROM $MAVEN_BUILD AS build
